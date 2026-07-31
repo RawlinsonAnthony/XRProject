@@ -6,30 +6,38 @@ public class findangle : MonoBehaviour
     public Vector3 cannonAngle;
     public Rigidbody cannonBall;
     public Transform cannonTip;
+    public float shootForce;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //cannonBall.position = cannonTip.position;
+        cannonBall.position = cannonTip.position;
         cannonAngle = GetAngle();
     }
 
     // Update is called once per frame
     void Update()
     { 
-        cannonBall.position = cannonTip.position;
-        cannonBall.AddForce(cannonAngle * 1999);
-        if(!cannonBall.IsDestroyed())
-        {
-            Object.Instantiate(cannonBall);
-            Object.Destroy(cannonBall);
-        }
-        else
-        {
-            Object.Instantiate("cannonBall(Clone)");
-            Object.Destroy(cannonBall);
-        }
 
+        
+    }
+
+
+    [ContextMenu("Shoot")]
+    public void Shoot()
+    {
+        cannonBall.useGravity = true;
+        cannonBall.linearVelocity = Vector3.zero; //Remove velocity
+        cannonBall.position = cannonTip.position;
+        cannonBall.AddForce(cannonAngle * shootForce);
+    }
+
+    void Example()
+    {
+        cannonBall.gameObject.SetActive(false); //Turn off
+        cannonBall.linearVelocity = Vector3.zero; //Remove velocity
+        cannonBall.position = Vector3.zero; //Set position
+        cannonBall.gameObject.SetActive(true); //Turn on
     }
     public Vector3 GetAngle()
     {

@@ -24,4 +24,17 @@ public class Exmaple : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(angle * forceValue);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log($"Collision - {collision.gameObject.name}");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"Trigger - {other.gameObject.name}");
+        GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().AddForce(other.transform.forward * 1000);
+       
+    }
+
 }
