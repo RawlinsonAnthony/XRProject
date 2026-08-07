@@ -13,6 +13,7 @@ public class findangle : MonoBehaviour
     {
         cannonBall.position = cannonTip.position;
         cannonAngle = GetAngle();
+        Shoot();
     }
 
     // Update is called once per frame
