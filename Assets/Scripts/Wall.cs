@@ -3,8 +3,8 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
 
-    public findangle cannonBall;
-
+    public findangle test;
+    public Rigidbody cannonBall;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,10 +19,11 @@ public class Wall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        cannonBall = other;
         //if(other.gameObject.name == "cannonBall")
         {
-            cannonBall = other.GetComponent<findangle>();
-            cannonBall.Shoot();
+            test = other.GetComponent<findangle>();
+            test.Shoot();
         }
     }
 }
