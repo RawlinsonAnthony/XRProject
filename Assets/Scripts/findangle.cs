@@ -13,7 +13,7 @@ public class findangle : MonoBehaviour
     {
         cannonBall.position = cannonTip.position;
         cannonAngle = GetAngle();
-        Shoot();
+        Shoot(cannonBall);
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class findangle : MonoBehaviour
 
 
     [ContextMenu("Shoot")]
-    public void Shoot()
+    public void Shoot(Rigidbody ball)
     {
         cannonBall.useGravity = true;
         cannonBall.linearVelocity = Vector3.zero; //Remove velocity
