@@ -44,4 +44,8 @@ public class findangle : MonoBehaviour
     {
         return transform.up;
     }
+    public Vector3 ForwardAngle()
+    {
+        return transform.forward;
+    }
 }
