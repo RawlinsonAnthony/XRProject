@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,6 +10,8 @@ public class racquet : MonoBehaviour
     Vector3 currentDirection;
     float force;
     public float forceMultiplier;
+    public Transform resetPoint;
+    public Rigidbody Racquet;
 
     int ballLayer = 3;
     Vector3 rayDirection;
@@ -17,6 +20,7 @@ public class racquet : MonoBehaviour
     {
         col = GetComponent<BoxCollider>();
         previousPos = transform.position;
+        resetPoint.position = Racquet.position;
     }
 
     // Update is called once per frame
@@ -60,6 +64,16 @@ public class racquet : MonoBehaviour
             }
 
         }
+        interact();
+    }
+
+    public void interact() //move forward while holding "e"
+    {
+        if(Input.GetKey(KeyCode.E))
+        {
+            Vector3 targetVelocity = new Vector3(0f, 2f, 5f);
+            Racquet.MovePosition(Racquet.position + targetVelocity * Time.fixedDeltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -69,6 +83,8 @@ public class racquet : MonoBehaviour
         {
             Debug.Log("collision with racquet detected");
             collision.GetComponent<CannonBall>().Hit(currentDirection * force * forceMultiplier);
+
+            Racquet.position = resetPoint.position;
         }
     }
 }

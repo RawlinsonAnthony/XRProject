@@ -119,6 +119,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &268412044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268412045}
+  m_Layer: 0
+  m_Name: resetPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268412045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268412044}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.25102368, y: -0, z: -0, w: 0.967981}
+  m_LocalPosition: {x: 6.5, y: 1.9, z: -14.55}
+  m_LocalScale: {x: 1, y: 1.8535, z: 0.2359997}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1031006319}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,12 +839,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031006315}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25102368, y: -0, z: -0, w: 0.967981}
-  m_LocalPosition: {x: 6.5, y: 1.9, z: -14.55}
-  m_LocalScale: {x: 1, y: 1.8535, z: 0.2359997}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 268412045}
   m_LocalEulerAnglesHint: {x: -29.076, y: 0, z: 0}
 --- !u!114 &1031006320
 MonoBehaviour:
@@ -827,6 +859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::racquet
   forceMultiplier: 10
+  resetPoint: {fileID: 268412045}
+  Racquet: {fileID: 1031006321}
 --- !u!54 &1031006321
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1402,5 +1436,5 @@ SceneRoots:
   - {fileID: 539003214}
   - {fileID: 2066644281}
   - {fileID: 1203610029}
-  - {fileID: 1031006319}
   - {fileID: 1665416618}
+  - {fileID: 268412045}
