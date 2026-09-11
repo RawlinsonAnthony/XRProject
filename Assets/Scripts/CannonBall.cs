@@ -27,13 +27,13 @@ public class CannonBall : MonoBehaviour
         if (isHit == false)
         {
             isHit = true;
-            rb.linearVelocity = Vector3.zero; //Remove velocity
+            rb.linearVelocity *= -1; //invert velocity
             rb.AddForce(angle * forceValue);
         }
     }
 
     private void OnTriggerEnter(Collider other)
-    { 
+    {
         if (other.gameObject.tag == "Boundary")
         {
             isHit = false;

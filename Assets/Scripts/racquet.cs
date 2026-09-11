@@ -10,17 +10,16 @@ public class racquet : MonoBehaviour
     Vector3 currentDirection;
     float force;
     public float forceMultiplier;
-    public Transform resetPoint;
     public Rigidbody Racquet;
+    public player Player;
 
     int ballLayer = 3;
     Vector3 rayDirection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    { 
         col = GetComponent<BoxCollider>();
         previousPos = transform.position;
-        resetPoint.position = Racquet.position;
     }
 
     // Update is called once per frame
@@ -57,21 +56,37 @@ public class racquet : MonoBehaviour
         {
             if(hit.collider.name == "cannonBall")
             {
-                Debug.Log($"Hit object: {hit.collider.name}");
+                //Debug.Log($"Hit object: {hit.collider.name}");
 
                 //hit.transform.position = transform.forward;
                 //hit.transform.velo = force;
             }
 
         }
-        interact();
+        Racquet.position = Player.GetPlayerPosition();
+        //interact();
     }
 
     public void interact() //move forward while holding "e"
     {
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKey(KeyCode.W))
         {
             Vector3 targetVelocity = new Vector3(0f, 2f, 5f);
+            Racquet.MovePosition(Racquet.position + targetVelocity * Time.fixedDeltaTime);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            Vector3 targetVelocity = new Vector3(0f, -2f, -5f);
+            Racquet.MovePosition(Racquet.position + targetVelocity * Time.fixedDeltaTime);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            Vector3 targetVelocity = new Vector3(-5f, 0f, 0f);
+            Racquet.MovePosition(Racquet.position + targetVelocity * Time.fixedDeltaTime);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            Vector3 targetVelocity = new Vector3(5f, 0f, 0f);
             Racquet.MovePosition(Racquet.position + targetVelocity * Time.fixedDeltaTime);
         }
     }
@@ -81,10 +96,8 @@ public class racquet : MonoBehaviour
         
         if(collision.gameObject.name == "cannonBall")
         {
-            Debug.Log("collision with racquet detected");
+            //Debug.Log("collision with racquet detected");
             collision.GetComponent<CannonBall>().Hit(currentDirection * force * forceMultiplier);
-
-            Racquet.position = resetPoint.position;
         }
     }
 }
