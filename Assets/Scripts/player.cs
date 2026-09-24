@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class player : MonoBehaviour
@@ -5,6 +6,8 @@ public class player : MonoBehaviour
     public Rigidbody Player;
     public Vector3 NewPosition;
     Vector3 targetVelocity;
+    public float horizontalSpeed = 2.0f;
+    public float verticalSpeed = 2.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +19,9 @@ public class player : MonoBehaviour
     void Update()
     {
         Movement();
+        float h = horizontalSpeed * Input.GetAxis("Mouse X");
+        float v = verticalSpeed * Input.GetAxis("Mouse Y");
+        transform.Rotate(-v, h, 0);
     }
     public void Movement()
     {
