@@ -9,6 +9,8 @@ public class player : MonoBehaviour
     public float horizontalSpeed = 2.0f;
     public float verticalSpeed = 2.0f;
 
+    float speed = 2.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,33 +20,12 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        float h = horizontalSpeed * Input.GetAxis("Mouse X");
-        float v = verticalSpeed * Input.GetAxis("Mouse Y");
-        transform.Rotate(-v, h, 0);
-    }
-    public void Movement()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            targetVelocity = new Vector3(0f, 0f, 0.5f);
-            Player.MovePosition(Player.position + targetVelocity * Time.fixedDeltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            targetVelocity = new Vector3(0f, 0f, -0.5f);
-            Player.MovePosition(Player.position + targetVelocity * Time.fixedDeltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            targetVelocity = new Vector3(-0.5f, 0f, 0f);
-            Player.MovePosition(Player.position + targetVelocity * Time.fixedDeltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            targetVelocity = new Vector3(0.5f, 0f, 0f);
-            Player.MovePosition(Player.position + targetVelocity * Time.fixedDeltaTime);
-        }
+        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+        transform.Translate(speed * movement.normalized * Time.deltaTime);
+
+        float horizontal = horizontalSpeed * Input.GetAxis("Mouse X");
+        float vertical = verticalSpeed * Input.GetAxis("Mouse Y");
+        transform.Rotate(0, horizontal, 0);
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("attempting to swing");
@@ -54,7 +35,7 @@ public class player : MonoBehaviour
 
     public Vector3 GetPlayerPosition()
     {
-        NewPosition = new Vector3(Player.position.x, Player.position.y, Player.position.z + 3);
+        NewPosition = new Vector3(Player.position.x, Player.position.y, Player.position.z + 1);
         return NewPosition;
     }
 
