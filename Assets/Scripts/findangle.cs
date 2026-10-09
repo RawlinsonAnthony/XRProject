@@ -7,6 +7,8 @@ public class findangle : MonoBehaviour
     public Rigidbody cannonBall;
     public Transform cannonTip;
     public float shootForce;
+    public GameObject barrel;
+    public float randomForceMult;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,10 +29,11 @@ public class findangle : MonoBehaviour
     [ContextMenu("Shoot")]
     public void Shoot(Rigidbody ball)
     {
+        randomForceMult = Random.Range(1f, 3f);
         cannonBall.useGravity = true;
         cannonBall.linearVelocity = Vector3.zero; //Remove velocity
         cannonBall.position = cannonTip.position;
-        cannonBall.AddForce(cannonAngle * shootForce);
+        cannonBall.AddForce((randomForceMult * cannonAngle) * shootForce);
     }
 
     void Example()
@@ -42,10 +45,6 @@ public class findangle : MonoBehaviour
     }
     public Vector3 GetAngle()
     {
-        return transform.up;
-    }
-    public Vector3 ForwardAngle()
-    {
-        return transform.forward;
+        return barrel.transform.forward;
     }
 }

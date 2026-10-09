@@ -34,6 +34,10 @@ public class CannonBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Head")
+        {
+
+        }
         if (other.gameObject.tag == "Boundary")
         {
             isHit = false;
