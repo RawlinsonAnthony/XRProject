@@ -63,7 +63,7 @@ public class racquet : MonoBehaviour
             }
 
         }
-        Racquet.position = Player.GetPlayerPosition();
+        //Racquet.position = Player.GetPlayerPosition();
         //interact();
     }
 
